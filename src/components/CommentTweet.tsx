@@ -2,12 +2,11 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useSupabase } from "./supabase-provider";
 
-function CommentTweet({TweetId,children}) {
+function CommentTweet({ TweetId, children }) {
   const { supabase, session } = useSupabase();
   const [tweet, setTweet] = useState("");
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState({ id: '',
-  img_url: '',});
+  const [user, setUser] = useState({ id: "", img_url: "" });
 
   const Fetch = async () => {
     if (!session) return null;

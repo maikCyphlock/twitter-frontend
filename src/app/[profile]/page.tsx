@@ -74,7 +74,7 @@ export default async function page({ params }: any) {
   );
 }
 
-const Tweets = ({ user, tweet } : any) => {
+const Tweets = ({ user, tweet }: any) => {
   const { data } = tweet;
 
   if (data.length === 0 || !data)
@@ -85,7 +85,7 @@ const Tweets = ({ user, tweet } : any) => {
     );
   return (
     <section className="flex flex-col py-10 w-full max-w-xl gap-8 border-t">
-      {data.map((tweet:any) => (
+      {data.map((tweet: any) => (
         <div className="flex gap-4" key={tweet.id}>
           <Image
             width={68}
@@ -105,7 +105,7 @@ const Tweets = ({ user, tweet } : any) => {
                 </h2>
               </Link>
 
-              <UpdateTweet TweetId={tweet.id} Author_id={user.id}/>
+              <UpdateTweet TweetId={tweet.id} Author_id={user.id} />
             </div>
             <Link href={`${user.username}/status/${tweet.id}`}>
               <p className="max-w-md whitespace-pre-wrap">{tweet.content}</p>

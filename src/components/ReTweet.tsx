@@ -2,13 +2,12 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import { useSupabase } from "./supabase-provider";
 
-function Retweet({TweetId,children}) {
+function Retweet({ TweetId, children }) {
   const { supabase, session } = useSupabase();
   const [tweet, setTweet] = useState("");
   const [retweet, setReTweet] = useState(0);
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState({ id: '',
-  img_url: '',});
+  const [user, setUser] = useState({ id: "", img_url: "" });
 
   const Fetch = async () => {
     if (!session) return null;
@@ -19,22 +18,20 @@ function Retweet({TweetId,children}) {
     console.log(data);
     const user = data?.[0];
     return setUser(() => ({ ...user }));
-    
   };
   const FetchRetweet = async () => {
     if (!session) return null;
-    const { count:Retweets } = await supabase
+    const { count: Retweets } = await supabase
       .from("tweets")
-      .select("*" ,{ count: "exact", head: true })
-      .match({attached_tweet:TweetId, retweet: true});
+      .select("*", { count: "exact", head: true })
+      .match({ attached_tweet: TweetId, retweet: true });
 
-      console.log({Retweets})
-    setReTweet(Retweets)
-
+    console.log({ Retweets });
+    setReTweet(Retweets);
   };
   useEffect(() => {
     Fetch();
-    FetchRetweet()
+    FetchRetweet();
   }, []);
 
   const handlerText = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -48,7 +45,7 @@ function Retweet({TweetId,children}) {
       content: tweet,
       author_id: user.id,
       attached_tweet: TweetId,
-      retweet: true
+      retweet: true,
     });
     console.log(res);
     setOpen(false);
@@ -65,7 +62,7 @@ function Retweet({TweetId,children}) {
         onClick={(e) => HandlerModal()}
       >
         {children}
-        {retweet || ''}
+        {retweet || ""}
       </div>
       <dialog
         className="relative z-10"

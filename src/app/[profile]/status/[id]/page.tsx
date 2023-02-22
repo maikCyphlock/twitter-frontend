@@ -6,7 +6,7 @@ import UpdateTweet from "@components/UpdateTweet";
 
 export const revalidate = 0;
 
-async function page({ params }:any) {
+async function page({ params }: any) {
   const supabase = createServerClient();
 
   const { data } = await supabase
@@ -21,7 +21,7 @@ async function page({ params }:any) {
     .not("retweet", "is", true);
   console.log({ TweetComments });
 
-  const tweet =  data?.[0];
+  const tweet = data?.[0];
   if (!tweet)
     return (
       <section className="flex flex-col items-center py-10 w-full max-w-xl gap-8 border-t">
@@ -46,12 +46,15 @@ async function page({ params }:any) {
                 <h1 className="font-semibold">{tweet?.author_id?.fullname}</h1>
                 <h2 className="text-gray-500">@{tweet?.author_id?.username}</h2>
               </div>
-              <UpdateTweet TweetId={tweet.id} Author_id={tweet?.author_id?.id} />
+              <UpdateTweet
+                TweetId={tweet.id}
+                Author_id={tweet?.author_id?.id}
+              />
             </div>
             <p className="font-sans max-w-md whitespace-pre-wrap py-4">
               {tweet.content}
             </p>
-            <InteractionsTweets TweetId={tweet.id}  />
+            <InteractionsTweets TweetId={tweet.id} />
           </div>
         </div>
       </section>
@@ -81,7 +84,10 @@ async function page({ params }:any) {
                     </h2>
                   </Link>
                 </div>
-                <UpdateTweet TweetId={tweet.id} Author_id={tweet.author_id.id} />
+                <UpdateTweet
+                  TweetId={tweet.id}
+                  Author_id={tweet.author_id.id}
+                />
               </div>
               <Link href={`${tweet.author_id.username}/status/${tweet.id}`}>
                 <p className="font-sans max-w-md whitespace-pre-wrap pl-16">

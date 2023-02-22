@@ -3,7 +3,7 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useSupabase } from "./supabase-provider";
 import { Heart, Repost, Comments } from "@/components/Icon";
 import CommentTweet from "./CommentTweet";
-import Retweet from "./ReTweet"
+import Retweet from "./ReTweet";
 import LikeTweet from "./LikeTweet";
 export default function InteractionsTweets({ TweetId }) {
   const { supabase, session } = useSupabase();
@@ -46,27 +46,23 @@ export default function InteractionsTweets({ TweetId }) {
       <div className="flex justify-center items-center gap-2">
         <button className="p-2  fill-slate-400 hover:fill-blue-600 hover:bg-blue-100 rounded-full">
           <CommentTweet TweetId={TweetId}>
-          <Comments className="w-6 h-6 " />
-          {tweetCount ? tweetCount : ""}
+            <Comments className="w-6 h-6 " />
+            {tweetCount ? tweetCount : ""}
           </CommentTweet>
         </button>
-        
       </div>
       <div className="flex justify-center items-center gap-2">
         <button className="p-2 fill-slate-400 hover:fill-green-600 hover:bg-green-100 rounded-full">
-        <Retweet TweetId={TweetId}>
-
-          <Repost className="w-6 h-6 " />
-
-        </Retweet>
+          <Retweet TweetId={TweetId}>
+            <Repost className="w-6 h-6 " />
+          </Retweet>
         </button>
       </div>
       <div className="flex justify-center items-center gap-2">
         <button className="p-2 fill-slate-400 hover:fill-red-600 hover:bg-red-100 rounded-full">
-        <LikeTweet TweetId={TweetId}>
-
-          <Heart className="w-6 h-6 " />
-        </LikeTweet>
+          <LikeTweet TweetId={TweetId}>
+            <Heart className="w-6 h-6 " />
+          </LikeTweet>
         </button>
       </div>
     </div>

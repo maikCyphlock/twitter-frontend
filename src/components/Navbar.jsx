@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useSupabase } from "./supabase-provider";
 import { useEffect, useState } from "react";
+import LogoutBtn from "./LogoutBtn";
 export function Navbar() {
   const { session, supabase } = useSupabase();
   const [user, setUser] = useState({});
@@ -19,7 +20,7 @@ export function Navbar() {
 
   return (
     <nav className="flex justify-center bg-slate-100/50  fixed bottom-0 w-full  ">
-      <div className="flex p-4 gap-8">
+      <div className="flex p-4 gap-8 items-center">
         <Twitter />
 
         <Link href="/feed">
@@ -31,6 +32,8 @@ export function Navbar() {
         <Link href={`/${user.username}`}>
           <User />
         </Link>
+
+        <LogoutBtn />
       </div>
     </nav>
   );
@@ -39,7 +42,7 @@ export function Navbar() {
 export function NavbarWithout() {
   return (
     <nav className="flex justify-center bg-slate-100/50  fixed bottom-0 w-full  ">
-      <div className="flex p-4 gap-8">
+      <div className="flex p-4 gap-8 items-center">
         <Twitter />
 
         <Link href="/feed">

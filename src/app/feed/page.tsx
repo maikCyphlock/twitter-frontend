@@ -23,9 +23,9 @@ function Page() {
   }, [session.user.id, supabase]);
   return (
     <section className="container px-4 mx-auto justify-center items-center  flex flex-col gap-4  min-h-screen ">
-      <section className="flex flex-col py-10 px-4 w-full max-w-xl gap-8 border-t border-x">
+      <section className="flex flex-col my-10 mx-4 w-full max-w-xl gap-8 border-t border-x">
         {user.map((tweet) => (
-          <div className="flex gap-4 border-b" key={tweet.id}>
+          <div className="flex gap-4 border-b p-4" key={tweet.id}>
             <Image
               width={68}
               height={68}

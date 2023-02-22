@@ -34,7 +34,7 @@ export default async function RootLayout({
           <SupabaseListener serverAccessToken={session?.access_token} />
           <div className="min-h-screen relative">
             {children}
-            {session ? <Navbar /> : <NavbarWithout />}
+            {session ? <Navbar /> : <></>}
           </div>
         </SupabaseProvider>
       </body>

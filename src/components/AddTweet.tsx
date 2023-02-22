@@ -7,8 +7,8 @@ function AddTweet() {
   const [tweet, setTweet] = useState("");
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
-    id: '',
-    img_url: '',
+    id: "",
+    img_url: "",
   });
 
   const Fetch = async () => {
@@ -35,7 +35,7 @@ function AddTweet() {
 
     const res = await supabase.from("tweets").insert({
       content: tweet,
-      
+
       author_id: user.id,
     });
     console.log(res);

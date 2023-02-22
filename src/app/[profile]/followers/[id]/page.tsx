@@ -36,7 +36,7 @@ export default async function page({
           <div className="flex flex-col gap-4">
             {follows &&
               follows?.map(({ id, user_id }) => (
-                 // @ts-ignore
+                // @ts-ignore
                 <FollowUser key={id} id={user_id} />
               ))}
           </div>

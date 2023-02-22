@@ -3,14 +3,19 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { useSupabase } from "./supabase-provider";
 import { ThreeDots } from "@/components/Icon";
 
-function UpdateTweet({ TweetId,Author_id }: { TweetId: string, Author_id: string }) {
-
+function UpdateTweet({
+  TweetId,
+  Author_id,
+}: {
+  TweetId: string;
+  Author_id: string;
+}) {
   const { supabase, session } = useSupabase();
   const [tweet, setTweet] = useState("");
   const [open, setOpen] = useState(false);
   const [user, setUser] = useState({
-    id: '',
-    img_url: ""
+    id: "",
+    img_url: "",
   });
 
   const Fetch = async () => {
@@ -40,13 +45,16 @@ function UpdateTweet({ TweetId,Author_id }: { TweetId: string, Author_id: string
       .update({
         content: tweet,
       })
-      .match({id: TweetId, author_id: session.user.id});
+      .match({ id: TweetId, author_id: session.user.id });
     console.log(res);
     setOpen(false);
   };
 
   const RemoveTweet = async () => {
-    const res = await supabase.from("tweets").delete().match({id: TweetId, author_id: session.user.id});
+    const res = await supabase
+      .from("tweets")
+      .delete()
+      .match({ id: TweetId, author_id: session.user.id });
     console.log(res);
     setOpen(false);
   };
@@ -55,10 +63,9 @@ function UpdateTweet({ TweetId,Author_id }: { TweetId: string, Author_id: string
     setOpen((prev) => !prev);
   };
 
-  
   if (!session?.user.id) return null;
-  
-  if( Author_id !== session.user.id) return null
+
+  if (Author_id !== session.user.id) return null;
   return (
     <>
       <div className="grow"></div>
